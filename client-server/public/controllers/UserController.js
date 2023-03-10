@@ -208,8 +208,8 @@ class UserController {
         //let users = User.getusersStorage(); 
         let ajax = new XMLHttpRequest();
         ajax.open('GET', '/users');
-        ajax.onload = event=>{
-            let obj = { users: [] };
+        ajax.onload = event => {
+            let obj = { users : [] };
             try {
            obj = JSON.parse(ajax.responseText);
             }catch(e){
@@ -220,7 +220,7 @@ class UserController {
             user.loadFromJSON(dataUser);
             this.addLine(user);
         });
-        } 
+        };
         ajax.send(); 
         
     }
