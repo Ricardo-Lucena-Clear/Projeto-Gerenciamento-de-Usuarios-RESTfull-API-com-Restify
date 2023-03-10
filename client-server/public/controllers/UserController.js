@@ -205,34 +205,15 @@ class UserController {
          
     */
     selectAll() {   
-        //let users = User.getusersStorage(); 
-        let ajax = new XMLHttpRequest();
-        ajax.open('GET', '/users');
-        ajax.onload = event => {
-            let obj = { users : [] };
-            try {
-           obj = JSON.parse(ajax.responseText);
-            }catch(e){
-                console.error(e);
-            }
-           obj.users.forEach(dataUser => {
-            let user = new User();
-            user.loadFromJSON(dataUser);
-            this.addLine(user);
-        });
-        };
-        ajax.send(); 
-        
+       HttpRequest.get('/users').then(data=>{
+            data.users.forEach(dataUser=>{
+                let user = new User();
+                user.loadFromJSON(dataUser);
+                this.addLine(user);
+
+            })
+        })
     }
-    /*insert(data) {
-        let users = this.getusersStorage();
-        users.push(data);
-        sessionStorage.setItem("users", JSON.stringify(users));
-        sessionStorage.setItem("users", JSON.stringify(users));
-        COMO TROCAR DE SESSIONSTORAGE PARA LOCALSTORAGE 
-            *BASTA MUDAR APENAS O NOME, POIS A ESTRUTURA É A MESMA
-        
-    }*/
     addLine(dataUser) {
         let tr = this.getTr(dataUser);
         this.tableEl.appendChild(tr);
