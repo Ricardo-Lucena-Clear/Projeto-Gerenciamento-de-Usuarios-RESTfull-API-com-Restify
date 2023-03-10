@@ -1,2 +1,4 @@
 Clone nodeJS/node_modules
 client-server/node_modules
+client-server/public/bower_components
+.bower_components
